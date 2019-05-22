@@ -4,7 +4,6 @@
 <div class="mws-panel grid_8">
                 	<div class="mws-panel-header">
                     	<span><i class="icon-table"></i>用户详情列表</span>
-                        <h1>{{session('success')}}</h1>
                     </div>
                     <div class="mws-panel-body no-padding">
                         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
