@@ -136,7 +136,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $rs = Users::with('uinfo')->get();
+
+
+        return view('admin.users.edit',[
+            'title'=>'用户的修改页面',
+            'rs'=>$rs
+        ]);
     }
 
     /**

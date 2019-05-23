@@ -80,9 +80,8 @@
                                     	@endif
                                 	</td>
                                     <td class=" ">
-                                    	
+                                    	   <a class="btn btn-waring" href="/admin/users/{{$v->id}}/edit">修改</a>
                                         <form action="/admin/users/{{$v->id}}" method="post">
-                                            <button>修改</button>
                                             <button>删除</button>
                                             {{csrf_field()}}
                                             {{method_field('DELETE')}}
