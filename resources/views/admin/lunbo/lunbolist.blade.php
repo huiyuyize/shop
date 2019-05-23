@@ -18,6 +18,11 @@
         </span>
        
     </div>
+    @if(session('success'))
+    <div class="mws-form-message info">
+        {{session('success')}}
+    </div>
+    @endif
     <div class="mws-panel-body no-padding">
         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
             <form action="" method="get">
@@ -124,10 +129,14 @@
 
 
                         <td>
-                           <a href="" class="btn btn-warning" >修改
+                           <a href="/admin/lunbo/{{$v->id}}/edit" class="btn btn-warning" >修改
                            </a>
-                           <a href="" onclick="return confirm('确认要删除吗?');" class="btn btn-danger">删除
-                           </a>
+                           <form action="/admin/lunbo/{{$v->id}}" method="post" style="display:inline"> 
+                               <button class="btn btn-danger" onclick="return confirm('确认要删除吗?');">删除</button>
+                        
+                           {{csrf_field()}}
+                           {{method_field('DELETE')}}
+                           </form>
                             
                            
                         </td>
@@ -190,3 +199,12 @@
     @stop
 </body>
 </html>
+@section('js')
+<script type="text/javascript">
+ setTimeout(function(){
+    $('.mws-form-message').hide(1200)
+ },2000)
+</script>
+ 
+
+@stop

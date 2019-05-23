@@ -183,7 +183,7 @@
                         <a href="#"><i class="icon-arrow-right-2"></i>轮播图管理</a>
                         <ul class='closed'>
                             <li><a href="/admin/lunbo/create">添加轮播图</a></li>
-                            <li><a href="form_wizard.html">轮播图列表</a></li>
+                            <li><a href="/admin/lunbo">轮播图列表</a></li>
                         </ul>
                     </li>
                     <li>

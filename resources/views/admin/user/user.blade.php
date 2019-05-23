@@ -76,14 +76,14 @@
                                     </td>
                                     <td class=" ">
                                     	@if($v->admin_status == 1)
-                                    	<a href="">正常</a>
+                                    	正常
                                     	@else
-                                    	<a href="">封禁</a>
+                                    	封禁
                                     	@endif
                                 	</td>
                                     <td class=" ">	
+                                        <a class="btn btn-waring" href="/admin/adminuser/{{$v->id}}/edit">修改</a>
                                         <form action="/admin/adminuser/{{$v->id}}" method="post">
-                                        	<button>修改</button>
                                             <button>删除</button>
                                             {{csrf_field()}}
                                             {{method_field('DELETE')}}

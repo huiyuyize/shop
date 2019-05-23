@@ -53,8 +53,13 @@ Route::any('admin/goods/inserts/{id}/{name}','Admin\GoodsController@inserts');
 //执行子分类添加
 Route::any('admin/doinserts','Admin\GoodsController@doinserts');
 
+//后台轮播图
+Route::resource('/admin/lunbo','Admin\Lunbo\LunboController');
 
-
+//后台商品添加路由
+Route::resource('/ginsert','Admin\goods_insert\Goods_insertController');
+//后台商品类型添加路由
+Route::resource('/goods_type','Admin\goods_type\Goods_typeController');
 
 
 
@@ -197,8 +202,6 @@ Route::any('/home/list','Home\ListController@index');
 
 
 
-//后台轮播图
-Route::resource('/admin/lunbo','Admin\Lunbo\LunboController');
 
 
 
@@ -234,71 +237,3 @@ Route::resource('/admin/lunbo','Admin\Lunbo\LunboController');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//后台商品添加路由
-Route::resource('/ginsert','Admin\goods_insert\Goods_insertController');
-//后台商品类型添加路由
-Route::resource('/goods_type','Admin\goods_type\Goods_typeController');

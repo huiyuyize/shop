@@ -53,7 +53,7 @@ class LunboController extends Controller
         //获取后缀
         $shuffix = $file->getClientOriginalExtension();
 
-        $file->move('./uploads/lunbo/'.$name.'.'.$shuffix);
+        $file->move('./uploads/lunbo/',$name.'.'.$shuffix);
 
         $res['lunbo_img'] = '/uploads/lunbo/'.$name.'.'.$shuffix;
         //dump($res);
@@ -62,10 +62,9 @@ class LunboController extends Controller
 
         $bool = DB::table('lunbo')->insert($res);
         if($bool){
-        echo '<script>alert("添加成功");location.href="/admin/lunbo"</script>';
+           return redirect('/admin/lunbo')->with('success','添加成功');
         }else{
-        echo '<script>alert("添加失败")';
-        return back();
+           return back()->with('error','添加失败');
         }
 
        
@@ -90,7 +89,8 @@ class LunboController extends Controller
      */
     public function edit($id)
     {
-        //
+         $res = DB::table('lunbo')->where('id',$id)->first();
+         return view('/admin/lunbo/lunboedit',['title'=>'轮播图修改','res'=>$res]);
     }
 
     /**
@@ -101,8 +101,39 @@ class LunboController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        //删除原来的图片
+        $bool = DB::table('lunbo')->where('id',$id)->first();
+        $img = $bool->lunbo_img;
+        
+
+        $res = $request->except('_token','_method');
+
+        if($request->hasfile('lunbo_img')){
+
+           $file = $request->file('lunbo_img');
+
+           $name = 'img_'.rand(1111,9999).time();
+
+           $shuffix = $file->getClientOriginalExtension();
+
+           $file->move('./uploads/lunbo/',$name.'.'.$shuffix);
+
+           $res['lunbo_img'] = '/uploads/lunbo/'.$name.'.'.$shuffix; 
+           
+           if($img != $res['lunbo_img']){
+             unlink('.'.$img);
+           } 
+           
+        }
+        
+       $data = DB::table('lunbo')->where('id',$id)->update($res);
+
+        if($data){
+           return redirect('/admin/lunbo')->with('success','修改成功');
+        }else{
+           return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -113,6 +144,17 @@ class LunboController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //根据id删除图片
+        $res = DB::table('lunbo')->where('id',$id)->first();
+        unlink('.'.$res->lunbo_img);
+
+        //删除信息
+        $result= DB::table('lunbo')->where('id',$id)->delete();
+        if( $result){
+              return redirect('/admin/lunbo')->with('success','删除成功');
+        }else{
+              return back()->with('error','删除失败');
+        }
+    
     }
 }

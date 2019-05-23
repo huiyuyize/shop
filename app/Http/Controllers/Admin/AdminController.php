@@ -69,7 +69,7 @@ class AdminController extends Controller
             //将头像文件移动到uploads的admin下
             $file->move('./uploads/admin',$name.'.'.$suffix);
             //存入数据库的数据
-            $rs['upic'] = './uploads/admin/'.$name.'.'.$suffix;
+            $rs['upic'] = '/uploads/admin/'.$name.'.'.$suffix;
         }
 
             //对密码进行加密
@@ -83,7 +83,7 @@ class AdminController extends Controller
 
         
         if($add){
-            return redirect('')->with('success','添加成功');
+            return redirect('/admin/adminuser')->with('success','添加成功');
         }else{
             return back()->with('success','添加失败');
         }
@@ -108,7 +108,12 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+        $rs = DB::table('admin')->find($id);
+        return view('admin.user.edit',[
+            'title'=>'修改管理员页面',
+            'rs'=>$rs
+        ]);
     }
 
     /**
@@ -120,8 +125,46 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+
+        
+        $user = $request->except('_token','_method');
+
+        $pic = DB::table('admin')->where('id',$id)->value('upic');
+        $pic = '.'.$pic;
+        if ($request->hasFile('upic')) {
+            unlink($pic);
+        }
+
+
+        if ($request->hasFile('upic')) {
+            
+            //获取上传头像的暂存地址
+            $file = $request->file('upic');
+
+            //编辑一个图片名称
+            $name =  'img_'.rand(1111,9999).time();
+            //获取上传文件的后缀名
+            $suffix = $file->getClientOriginalExtension();
+            //将头像文件移动到uploads的admin下
+            $file->move('./uploads/admin',$name.'.'.$suffix);
+            //存入数据库的数据
+            $user['upic'] = '/uploads/admin/'.$name.'.'.$suffix;
+        }
+
+         $data = DB::table('admin')->where('id',$id)->update($user);
+    
+    
+
+        if($data){
+            return redirect('/admin/adminuser')->with('success','修改管理员成功');
+        }else{
+            return back()->with('error','修改管理员失败');
+        }
     }
+
+
+   
 
     /**
      * Remove the specified resource from storage.
@@ -131,12 +174,20 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
+       /* $pic = DB::table('admin')->where('id',$id)->value('upic');
+        $pic = '.'.$pic;
+        
         $rs = DB::table('admin')->where('id',$id)->delete();
 
         if($rs){
+            unlink($pic);
             return redirect('/admin/adminuser')->with('success','删除成功');
         }else{
             return back()->with('error','删除失败');
-        }
+        }*/
+
+
+        //封禁管理员
+        
     }
 }

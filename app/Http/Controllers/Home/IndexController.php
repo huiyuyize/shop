@@ -9,7 +9,7 @@ use DB;
 class IndexController extends Controller
 {
     
-	public function index()
+	public function index(Request $request)
 	{     
         //首页分类
           
@@ -24,17 +24,19 @@ class IndexController extends Controller
              $value['sub'] = Goods::where('cate_pid',$value->id)->get();
         	}
         }
-      
-     
-       
-		  return view('common.home',['pid_data'=>$pid_data]);
+    
+        //轮播图
+        $lunbo = DB::table('lunbo')->get();  
+           
+		return view('common.home',[
+            'pid_data'=>$pid_data,
+            'lunbo'=>$lunbo,
+            'title'=>'云联商城'
+
+        ]);
 	
        }
 
-
-
-       
-	
 }
 
 	
