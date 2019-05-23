@@ -155,15 +155,15 @@
                     <li>
                         <a href="#"><i class="icon-archive"></i>商品管理</a>
                         <ul class='closed'>
-                            <li><a href="/goods/create">添加商品</a></li>
+                            <li><a href="/ginsert">添加商品</a></li>
                             <li><a href="/admin/list">商品列表</a></li>
                         </ul>
                     </li>    
                     <li>
                         <a href="#"><i class="icon-database"></i>类型管理</a>
                         <ul class='closed'>
-                            <li><a href="form_layouts.html">添加类型</a></li>
-                            <li><a href="form_elements.html">类型列表</a></li>
+                            <li><a href="/goods_type/create">添加类型</a></li>
+                            <li><a href="/goods_type">类型列表</a></li>
                         </ul>
                     </li>    
                     <li>

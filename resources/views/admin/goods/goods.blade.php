@@ -1,6 +1,7 @@
 @extends('common.admin')
 @section('content')
 
+<!-- 商品添加页面 -->
 <center>
 <div class="mws-panel grid_8">
     <div class="mws-panel-header">
@@ -43,15 +44,15 @@
                 </div>
 
                 <div class="mws-form-row">
-                    <label class="mws-form-label">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">
-                              商品分类:
-                            </font>
-                        </font>
-                    </label>
+                    <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品分类</font></font></label>
                     <div class="mws-form-item">
-                        <input type="text" name="cate_id" class="large">
+                        <select class="large">
+                            <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请选择分类</font></font></option>
+                            @foreach($res as $k=>$v)
+                            <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                {{$v->cate_name}}</font></font></option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
