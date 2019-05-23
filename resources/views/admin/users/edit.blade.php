@@ -16,71 +16,64 @@
                                 </ul>
                             </div>
                         @endif
-                        <form id="mws-validate" class="mws-form" action="/admin/users" method="post" enctype="multipart/form-data" novalidate="novalidate">
+                        <form id="mws-validate" class="mws-form" action="/admin/users/{{$v->id}}" method="post" enctype="multipart/form-data" novalidate="novalidate">
                             <div id="mws-validate-error" class="mws-form-message error" style="display:none;"></div>
                             <div class="mws-form-inline">
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">用户名：</label>
                                     <div class="mws-form-item">
-                                        <input type="text" name="user_name" class="required large">
-                                    </div>
-                                </div>
-                                <div class="mws-form-row">
-                                    <label class="mws-form-label">密码：</label>
-                                    <div class="mws-form-item">
-                                        <input type="password" name="password" class="required email large">
-                                    </div>
-                                </div>
-                                <div class="mws-form-row">
-                                    <label class="mws-form-label">重复密码：</label>
-                                    <div class="mws-form-item">
-                                        <input type="password" name="pwd" class="required digits large">
+                                        <input type="text" name="user_name" class="required large" value="{{$v->user_name}}">
                                     </div>
                                 </div>
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">邮箱：</label>
                                     <div class="mws-form-item">
-                                        <input type="text" name="user_email" class="required url large">
+                                        <input type="text" name="user_email" class="required url large" value="{{$v->user_email}}">
                                     </div>
                                 </div>
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">年龄：</label>
                                     <div class="mws-form-item">
-                                        <input type="text" name="user_age" class="required digits large">
+                                        <input type="text" name="user_age" class="required digits large" value="{{$v['uinfo'][0]->user_age}}">
                                     </div>
                                 </div>
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">手机号：</label>
                                     <div class="mws-form-item">
-                                        <input type="text" name="user_phone" class="required digits large">
+                                        <input type="text" name="user_phone" class="required digits large" value="{{$v->user_phone}}">
                                     </div>
                                 </div>
                                 <div class="mws-form-row">
                                     <label class="mws-form-label">性别：</label>
                                     <div class="mws-form-item">
                                         <select class="required large" name="user_sex">
-                                            <option></option>
-                                            <option value="1">男</option>
-                                            <option value="2">女</option>
+                                            
+                                            <option value="1" @if($v['uinfo']['0']->user_sex == 1) selected @endif >男</option>
+                                            <option value="2"@if($v['uinfo']['0']->user_sex == 2) selected @endif>女</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="mws-form-row">
                                 <label class="mws-form-label">头像：</label>
                                    <div class="mws-form-item">
-                                       <div class="fileinput-holder" style="position: relative;">
-                                        <input type="text" class="fileinput-preview" style="width: 100%; padding-right: 84px;" readonly="readonly">
-                                            <span class="fileinput-btn btn" type="button" style="display:block; overflow: hidden; position: absolute; top: 0; right: 0; cursor: pointer;">选择文件：<input type="file" name="user_pic" class="required" style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 999px; opacity: 0; z-index: 999;"></span>
-                                        </div>
-                                <label for="picture" class="error" generated="true" style="display:none"></label>
+                                    <img src="{{$v['uinfo'][0]->user_pic}}" alt="" style="width:300px;height:200px;">
+                                        <input type="file" name="user_pic" style="position:absolute; top:0px; right:0px;margin:0px;cursor:pointer;font-size:999px;opacity:0;z-index:999;">
+                                    </div>
                                 </div>
+                                 <div class="mws-form-row">
+                                    <label class="mws-form-label">状态：</label>
+                                    <div class="mws-form-item clearfix">
+                                        <ul class="mws-form-list inline">
+                                            <li><lavle><input type="radio" name="user_status" value="1"@if($v->user_status == 1) checked @endif>开启</lavle></li>
+                                            <li><lavle><input type="radio" name="user_status" value="2" @if($v->user_status == 2) checked @endif>禁用</lavle></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                               </div>
-                            </div>
                             <div class="mws-button-row">
-                                <input type="submit" class="btn btn-danger">
+                                <input type="submit" class="btn btn-danger" value="修改">
                             </div>
                             {{csrf_field()}}
+                            {{method_field('PUT')}}
                         </form>
                     </div>      
                 </div>

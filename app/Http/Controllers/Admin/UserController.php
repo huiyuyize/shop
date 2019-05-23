@@ -137,12 +137,19 @@ class UserController extends Controller
     public function edit($id)
     {
 
-        $rs = Users::with('uinfo')->get();
+        //$rs = Users::find($id)->uinfo()->get();
+        $rs = Users::with('uinfo')->where('id',$id)->get();
+
+
+
+        foreach($rs as $k=>$v){
+
+        }
 
 
         return view('admin.users.edit',[
             'title'=>'用户的修改页面',
-            'rs'=>$rs
+            'v'=>$v
         ]);
     }
 
@@ -155,7 +162,45 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+
+        $user = $request->except('_token','_method','user_age','user_sex','user_pic');
+        $uinfo = $request->except('_token','_method','user_name','user_email','user_phone','user_status');
+
+        
+        
+
+        //从数据库取出旧头像的路径为删除做准备
+        $pic = DB::table('user_info')->where('uid',$id)->value('user_pic');
+        //判断，如果上传了新头像，删除旧头像
+        
+        
+        $pic = '.'.$pic;
+        if($request->hasFile('user_pic')){
+            unlink($pic);
+        }
+
+        if ($request->hasFile('user_pic')) {
+            $file = $request->file('user_pic');
+            $name = 'img_'.rand(1111,9999).time();
+
+            $suffix = $file->getClientOriginalExtension();
+
+            $file->move('./uploads',$name.'.'.$suffix);
+
+            $uinfo['user_pic'] = '/uploads/'.$name.'.'.$suffix;
+
+        }
+
+        
+        $data = DB::table('users')->where('id',$id)->update($user);
+        $udata = DB::table('user_info')->where('uid',$id)->update($uinfo);
+        if ($data && $udata) {
+            return redirect('/admin/users')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
+        
     }
 
     /**
@@ -170,10 +215,12 @@ class UserController extends Controller
         
         $del = Users::find($id);
         $del->delete();
-
+        $pic = DB::table('user_info')->where('uid',$id)->value('user_pic');
+        $pic = '.'.$pic;
         $dodel = $del->uinfo()->delete();
 
         if ($dodel) {
+            unlink($pic);
             return redirect('/admin/users')->with('success','删除成功');
         }else{
             return back()->with('error','删除失败');
