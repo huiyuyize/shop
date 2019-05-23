@@ -30,7 +30,7 @@
 	<script type="text/javascript" src="/static/home/js/lrscroll_1.js"></script>
     
     
-<title>尤洪</title>
+<title>{{$title}}</title>
 </head>
 <body>  
 <!--Begin Header Begin-->
@@ -168,10 +168,12 @@
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/static/home/images/logo.png" /></a></div>
     <div class="search">
-    	<form>
+
+    	<form action="/" method="post">
         	<input type="text" value="" class="s_ipt" />
             <input type="submit" value="搜索" class="s_btn" />
-        </form>                      
+        </form>   
+
         <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
     </div>
     <div class="i_car">
@@ -255,16 +257,17 @@
         <div class="m_ad">中秋送好礼！</div>
     </div>
 </div>
-<!--End Menu End--> 
+<!--End Menu End-->
+
 <div class="i_bg bg_color">
 	<div class="i_ban_bg">
 		<!--Begin Banner Begin-->
     	<div class="banner">    	
             <div class="top_slide_wrap">
                 <ul class="slide_box bxslider">
-                    <li><img src="/static/home/images/ban1.jpg" width="740" height="401" /></li>
-                    <li><img src="/static/home/images/ban1.jpg" width="740" height="401" /></li> 
-                    <li><img src="/static/home/images/ban1.jpg" width="740" height="401" /></li> 
+                    @foreach($lunbo as $k=>$v)
+                    <li><a href="{{$v->lunbo_link}}"><img src="{{$v->lunbo_img}}" width="740" height="401" /></a></li>
+                   @endforeach
                 </ul>	
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
