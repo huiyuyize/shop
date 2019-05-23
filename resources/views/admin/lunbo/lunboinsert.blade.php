@@ -12,7 +12,7 @@
         	<span>{{$title}}</span>
         </div>
 	<div class="mws-panel-body no-padding">
-        	<form class="mws-form" action="/admin/lunbo/doinsert" method='post' enctype='multipart/form-data' >
+        	<form class="mws-form" action="/admin/lunbo" method='post' enctype='multipart/form-data' >
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
         				<label class="mws-form-label">轮播图名称</label>
@@ -56,11 +56,10 @@
         				</div>
         			</div>
         		</div>
-        		<div class="mws-button-row">
-        			{{csrf_field()}}
-
+        		<div class="mws-button-row">          
         			<input type="submit" value="添加" class="btn btn-info">
         		</div>
+                {{csrf_field()}}
         	</form>
         </div>
 	@stop

@@ -181,3 +181,21 @@ Route::any('/home/list','Home\ListController@index');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//后台轮播图
+Route::resource('/admin/lunbo','Admin\Lunbo\LunboController');

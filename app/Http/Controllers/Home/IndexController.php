@@ -26,9 +26,8 @@ class IndexController extends Controller
         }
       
      
-        //首页导航
-          $nav = DB::table('navigation')->get();
-		  return view('home.index',['pid_data'=>$pid_data,'nav'=>$nav]);
+       
+		  return view('common.home',['pid_data'=>$pid_data]);
 	
        }
 
