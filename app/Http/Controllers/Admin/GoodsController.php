@@ -45,8 +45,15 @@ class GoodsController extends Controller
      //删除
      public function delete($id)
      {
-          $bool = Goods::where('id',$id)->delete();
-          return redirect('/admin/goods');
+         $res = Goods::where('id',$id)->first();
+          $count = Goods::where('cate_pid',$id)->count();
+          if($count){
+             echo "<script>alert('该类有子分类,请先删除子类再来删除本类!');location.href='/admin/goods'</script>";
+             die;
+          }else{
+             Goods::destroy($id);
+             return redirect('/admin/goods');
+          }      
 
      }
 
