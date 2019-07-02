@@ -44,15 +44,15 @@
                 @endif
 
 
-                <form class="mws-form" action="/admin/dologin" method="post">
+                <form class="mws-form" action="/admin/login" method="post">
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="text" name="username" class="mws-login-username required" placeholder="请输入账号">
+                            <input type="text" name="uname" class="mws-login-username required" placeholder="请输入账号">
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="password" name="password" class="mws-login-password required" placeholder="请输入密码">
+                            <input type="password" name="upwd" class="mws-login-password required" placeholder="请输入密码">
                         </div>
                     </div>
 

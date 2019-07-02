@@ -63,10 +63,10 @@
                                     <td class=" ">{{$v->last_time}}</td>
                                     <td class=" ">{{$v->user_phone}}</td>
                                     <td class=" ">
-                                    	<img src="{{$v['uinfo'][0]->user_pic}}" alt="">
+                                    	<img src="{{@$v['uinfo'][0]->user_pic}}" alt="">
                                     </td>
                                     <td class=" ">
-                                    	@if($v['uinfo'][0]->user_sex == 1)
+                                    	@if(@$v['uinfo'][0]->user_sex == 1)
                                     	男
                                     	@else
                                     	女

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\advert\advert;
 
 class AdvertController extends Controller
 {
@@ -14,11 +15,15 @@ class AdvertController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-
-
+        $ad_name = $request->input('ad_name');
+        $rs = advert::where('ad_name','like','%'.$ad_name.'%')->paginate($request->input('num',10));
+        return view('/admin/advert/adlist',[
+            'title'=>'广告列表页面',
+            'rs'=>$rs,
+            'request'=>$request
+        ]);
     }
 
     /**
@@ -43,6 +48,20 @@ class AdvertController extends Controller
     public function store(Request $request)
     {
         //
+        $rs = $request->except('_token');
+        // dump($rs);
+        $file = $request->file('ad_img');
+        //名字
+        $name = 'img_'.rand(1111,9999).time();
+        //获取后缀
+        $suffix = $file->getClientOriginalExtension();
+        $file->move('./uploads/advert',$name.'.'.$suffix);
+        $rs['ad_img'] = '/uploads/advert/'.$name.'.'.$suffix;
+        // dump($rs);die;
+        $data = advert::create($rs);
+        if($data){
+            return redirect('/advert')->with('success','添加成功');
+        }
     }
 
     /**
@@ -64,7 +83,13 @@ class AdvertController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rs = advert::find($id);
+        // dump($rs);
+        return view('/admin/advert/upadvert',[ 
+            'title'=>'广告的修改页面',
+            'rs'=>$rs
+        ]);
+
     }
 
     /**
@@ -87,6 +112,14 @@ class AdvertController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $logo = advert::find($id);
+        $logo=$logo->only('ad_img');
+        $logos = $logo['ad_img'];
+        // dump($logos);
+        $dd = unlink('.'.$logos);
+       $data = advert::destroy($id);
+       if($data){
+        return redirect('/advert')->with('success','删除成功');
+       }
     }
 }

@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="/static/admin/css/themer.css" media="screen">
 <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
 
-<title>@yield('title')</title>
+<title>宜家商城</title>
 
 </head>
 
@@ -52,7 +52,7 @@
         
             <!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
             <div id="mws-logo-wrap">
-                <h1 style="color:white;">云联商城</h1>
+                <h1 style="color:white;">宜家商城</h1>
             </div>
         </div>
         
@@ -70,18 +70,16 @@
             
                 <!-- User Photo -->
                 <div id="mws-user-photo">
-                    <img src="/static/admin/example/profile.jpg" alt="User Photo">
+                    <img src="" alt="User Photo">
                 </div>
                 
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        Hello, John Doe
+                        Hello,{{session('uname')}}
                     </div>
                     <ul>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Change Password</a></li>
-                        <li><a href="index.html">Logout</a></li>
+                        <li><a href="/admin/out">退出登录</a></li>
                     </ul>
                 </div>
             </div>
@@ -131,11 +129,11 @@
                             <li><a href="/admin/adminuser/create">添加管理员</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="icol32-lock"></i>RBAC管理</a>
+                     <li>
+                        <a href="#"><i class="icon-film"></i>权限管理</a>
                         <ul class='closed'>
-                            <li><a href="form_layouts.html">角色管理</a></li>
-                            <li><a href="form_elements.html">权限管理</a></li>
+                            <li><a href="/admin/permission/create">添加权限</a></li>
+                            <li><a href="/admin/permission">浏览权限</a></li>
                         </ul>
                     </li>    
                     <li>
@@ -155,8 +153,8 @@
                     <li>
                         <a href="#"><i class="icon-archive"></i>商品管理</a>
                         <ul class='closed'>
-                            <li><a href="/ginsert">添加商品</a></li>
-                            <li><a href="/admin/list">商品列表</a></li>
+                            <li><a href="/ginsert/create">添加商品</a></li>
+                            <li><a href="/ginsert">商品列表</a></li>
                         </ul>
                     </li>    
                     <li>
@@ -169,8 +167,8 @@
                     <li>
                         <a href="#"><i class="icon-delicious"></i>属性管理</a>
                         <ul class='closed'>
-                            <li><a href="form_layouts.html">添加属性</a></li>
-                            <li><a href="form_elements.html">属性列表</a></li>
+                            <li><a href="/goods_attr/create">添加属性</a></li>
+                            <li><a href="/goods_attr">属性列表</a></li>
                         </ul>
                     </li>    
                     <li>
@@ -189,28 +187,15 @@
                     <li>
                         <a href="#"><i class="icon-apple"></i>广告管理</a>
                         <ul class='closed'>
-                            <li><a href="/admin/create">添加广告</a></li>
-                            <li><a href="form_wizard.html">广告列表</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="icon-film"></i>优惠券管理</a>
-                        <ul class='closed'>
-                            <li><a href="form_layouts.html">类型管理</a></li>
-                            <li><a href="form_wizard.html">发放管理</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#"><i class="icon-list-2"></i>地址管理</a>
-                        <ul class='closed'>
-                            <li><a href="form_layouts.html">查看地址</a></li>
+                            <li><a href="/advert/create">添加广告</a></li>
+                            <li><a href="/advert">广告列表</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#"><i class="icon-signal"></i>友情链接管理</a>
                         <ul class='closed'>
-                            <li><a href="form_layouts.html">添加链接</a></li>
-                             <li><a href="form_layouts.html">链接列表</a></li>
+                            <li><a href="/links/create">添加链接</a></li>
+                             <li><a href="/links">链接列表</a></li>
                         </ul>
                     </li>                  
                 </ul>
@@ -221,7 +206,7 @@
         <div id="mws-container" class="clearfix">
             <div class="container">
         @section('content')
-            <!-- Inner Container Start -->
+            <center><h1>欢迎{{session('uname')}}进入云联商城后台管理系统</h1></center>
             
         @show
             </div>

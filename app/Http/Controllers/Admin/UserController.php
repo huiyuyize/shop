@@ -34,8 +34,6 @@ class UserController extends Controller
 
         
         //dump($user[0]['uinfo'][0]->user_addr);die;
-
-
         return view('admin.users.user',[
             'title'=>'用户详情列表',
             'user'=>$user,
@@ -47,7 +45,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response*/
      */
     public function create()
     {
@@ -90,7 +88,7 @@ class UserController extends Controller
         //对上传的头像进行处理
         if ($request->hasFile('user_pic')) {
             $file = $request->file('user_pic');
-
+ 
 
             $name = 'img_'.rand(1111,9999).time();
 

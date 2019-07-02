@@ -20,12 +20,13 @@ class LoginController extends Controller
     	return view('home.add');
     }
     //注册信息存储
-    public function create(Request $request)
+    public function doadd(Request $request)
     {
+        $date = date("Y-m-d H:i:s",time());
     	$a = $request->except('_token','repassword');
         $a['password'] = Hash::make($request->password);
         $a['user_status'] = 1;
-        $a['user_created_time'] = time();
+        $a['user_created_time'] = $date;
         $a['user_ip'] = $request->ip();
         $a['user_balance'] = '0.00';
     	// dump($a);
@@ -85,33 +86,34 @@ class LoginController extends Controller
     //用户登录
     public function login(Request $request)
     {
-        $a = $request->all();
+        //取出表单接收到的账号密码
+        $a = $request->except('_token');
        
+       
+        // 检测用户名是否正确
+        $userinfo = DB::table('users')->where('user_name',$a['user_name'])->first();
 
-        // dump($a['username']);
-        // 查看用户名是否存在
-        $password = DB::table('users')->where('user_name',$a['username'])->first();
-        if(!$password){
-            echo 1;
+
+        if(!$userinfo){
+            return back()->with('error','账号或密码错误，请重新输入');
         } else {
-            $pa = $password->password ;
-            if(! Hash::check("$request->pass",$pa)){
-                echo 1;
+            //判断密码是否正确
+            $pa = $userinfo->password;
+            if(! Hash::check($a['password'],$pa)){
+                return back()->with('error','账号或密码错误，请重新输入');
             } else {
-                echo 0;
-                // return redirect('/');
-                session(['user'=>$a['username']]);
                 
+                session(['username'=> $userinfo->user_name,'userid'=> $userinfo->id]);
+                return redirect('/')->with('success','登录成功');
             }
         }
-        
        
     }
     //退出登录
     public function loginout()
     {
-        session(['user'=>'']);
-        return redirect('/');
+        session(['username'=>'']);
+        return back();
     }
     //忘记密码
     public function slip()
@@ -215,9 +217,11 @@ class LoginController extends Controller
         // dump(session('reset_id'));
         // echo session('id');
          $newpass = $request->input('new');
+         // dump($newpass);
         $pass = Hash::make($newpass);
         $arr = ['password'=>$pass];
-        $rs = DB::table('users')->where('id',session('reset_id'))->update($arr);
+        $rs = DB::table('users')->where('id',session('user_id'))->update($arr);
+        // dump($rs);
         if($rs){
             echo 1;
         }else{
@@ -225,4 +229,5 @@ class LoginController extends Controller
         }
     }
 
+    
 }

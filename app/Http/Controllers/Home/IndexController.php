@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Home\Goods;
+use App\Model\Home\goods\Goodss;
 use DB;
 class IndexController extends Controller
 {
@@ -26,16 +27,42 @@ class IndexController extends Controller
         }
     
         //轮播图
-        $lunbo = DB::table('lunbo')->get();  
+        $lunbo = DB::table('lunbo')->get(); 
+
+         //广告遍历
+        $advert = DB::table('advertising')->get();
+        // dump($advert);
+
+        //前台首页商品遍厉
+        $goods = Goodss::all();
+        // dump($goods);
+            
+        //友情链接
+        $link = DB::table('links')->get();
            
-		return view('common.home',[
+		return view('home.index',[
             'pid_data'=>$pid_data,
             'lunbo'=>$lunbo,
-            'title'=>'云联商城'
+            'title'=>'云联商城',
+            'advert'=>$advert,
+            'link'=>$link,
+            'goods'=>$goods
 
         ]);
 	
        }
+
+       //显示广告页面
+       public function list($id)
+       {
+        $rs = DB::table('advertising')->find($id);
+        // dump($rs);
+        return view('home/guanggao',[
+            'rs'=>$rs, 
+
+        ]);
+       }
+
 
 }
 

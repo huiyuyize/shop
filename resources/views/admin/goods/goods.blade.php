@@ -14,7 +14,7 @@
         </span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="/admin/index" method="post" enctype="multipart/form-data">
+        <form class="mws-form" action="/ginsert" method="post" enctype="multipart/form-data">
             <div class="mws-form-inline">
            
                 <div class="mws-form-row">
@@ -46,7 +46,7 @@
                 <div class="mws-form-row">
                     <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商品分类</font></font></label>
                     <div class="mws-form-item">
-                        <select class="large">
+                        <select class="large" name="cate_id">
                             <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请选择分类</font></font></option>
                             @foreach($res as $k=>$v)
                             <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
@@ -72,9 +72,9 @@
                 <div class="mws-form-row">
     				<label class="mws-form-label">商品品牌</label>
     				<div class="mws-form-item">
-    					<select class="large">
+    					<select class="large" name="brand_id">
     						@foreach($rs as $k=>$v)
-    						<option>{{$v}}</option>
+    						<option>{{$v->brand_name}}</option>
     						@endforeach
     					</select>
     				</div>
@@ -180,7 +180,7 @@
                         </font>
                     </label>
                     <div class="mws-form-item">
-                        <input type="text" name="goods_bianhao" class="large">
+                        <input type="text" name="goods_bianhao" class="large" value="@php echo date(time()).rand(1111,9999) @endphp">
                     </div>
                 </div>
 
@@ -228,7 +228,7 @@
                 <div class="mws-form-row">
                 	<label class="mws-form-label">商品图片:</label>
                 	<div class="mws-form-item">
-                    	<input type="file" name='brand_logo' style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 999px; opacity: 0; z-index: 999;">
+                    	<input type="file" name='goods_img' style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 999px; opacity: 0; z-index: 999;">
                     </div>
                 </div>
 
@@ -242,8 +242,8 @@
                     </label>
         				<div class="mws-form-item clearfix">
         					<ul class="mws-form-list inline">
-        						<li><label><input type="radio" name='brand_status' value='1' checked>上架</label></li>
-        						<li><label><input type="radio" name='brand_status' value='0'> 下架</label></li>
+        						<li><label><input type="radio" name='goods_status' value='1' checked>上架</label></li>
+        						<li><label><input type="radio" name='goods_status' value='0'> 下架</label></li>
         					</ul>
         				</div>
                 </div>

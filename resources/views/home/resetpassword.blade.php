@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link type="text/css" rel="stylesheet" href="/static/home/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/static/home/css/style.css" />
     <!--[if IE 6]>
     <script src="js/iepng.js" type="text/javascript"></script>
         <script type="text/javascript">
@@ -14,7 +14,7 @@
     <script type="text/javascript" src="/static/home/js/jquery.js"></script>
     <script type="text/javascript" src="/static/home/js/menu.js"></script>    
         
-	<script type="text/javascript" src="/static/home/js/select.js"></script>
+    <script type="text/javascript" src="/static/home/js/select.js"></script>
         
     
 <title>{{$title}}</title>
@@ -22,16 +22,16 @@
 <body>  
 <!--Begin Header Begin-->
 <div class="soubg">
-	<div class="sou">
-    	<!--Begin 所在收货地区 Begin-->
-    	<span class="s_city_b">
-        	<span class="fl">送货至：</span>
+    <div class="sou">
+        <!--Begin 所在收货地区 Begin-->
+        <span class="s_city_b">
+            <span class="fl">送货至：</span>
             <span class="s_city">
-            	<span>四川</span>
+                <span>四川</span>
                 <div class="s_city_bg">
-                	<div class="s_city_t"></div>
+                    <div class="s_city_t"></div>
                     <div class="s_city_c">
-                    	<h2>请选择所在的收货地区</h2>
+                        <h2>请选择所在的收货地区</h2>
                         <table border="0" class="c_tab" style="width:235px; margin-top:10px;" cellspacing="0" cellpadding="0">
                           <tr>
                             <th>A</th>
@@ -100,27 +100,27 @@
         </span>
         <!--End 所在收货地区 End-->
         <span class="fr">
-        	<span class="fl">你好，请<a href="Login.html">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
-        	<span class="ss">
-            	<div class="ss_list">
-                	<a href="#">收藏夹</a>
+            <span class="fl">你好，请<a href="Login.html">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+            <span class="ss">
+                <div class="ss_list">
+                    <a href="#">收藏夹</a>
                     <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
+                        <div class="s_city_t"></div>
                         <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">我的收藏夹</a></li>
+                            <ul>
+                                <li><a href="#">我的收藏夹</a></li>
                                 <li><a href="#">我的收藏夹</a></li>
                             </ul>
                         </div>
                     </div>     
                 </div>
                 <div class="ss_list">
-                	<a href="#">客户服务</a>
+                    <a href="#">客户服务</a>
                     <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
+                        <div class="s_city_t"></div>
                         <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">客户服务</a></li>
+                            <ul>
+                                <li><a href="#">客户服务</a></li>
                                 <li><a href="#">客户服务</a></li>
                                 <li><a href="#">客户服务</a></li>
                             </ul>
@@ -128,12 +128,12 @@
                     </div>    
                 </div>
                 <div class="ss_list">
-                	<a href="#">网站导航</a>
+                    <a href="#">网站导航</a>
                     <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
+                        <div class="s_city_t"></div>
                         <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">网站导航</a></li>
+                            <ul>
+                                <li><a href="#">网站导航</a></li>
                                 <li><a href="#">网站导航</a></li>
                             </ul>
                         </div>
@@ -190,14 +190,14 @@
 <!--End Header End--> 
 <div class="i_bg bg_color">
     <!--Begin 用户中心 Begin -->
-	<div class="m_content">
-   		
-		<!-- <div class="m_right">
+    <div class="m_content">
+        
+        <!-- <div class="m_right">
             <p></p> -->
             
             
             <div class="m_des">
-                <form>
+                <form >
                 <table border="0" style="width:880px;"  cellspacing="0" cellpadding="0">
                  
                   <tr height="65">
@@ -225,7 +225,7 @@
             
         <!-- </div> -->
     </div>
-	<!--End 用户中心 End--> 
+    <!--End 用户中心 End--> 
     <!--Begin Footer Begin -->
     <div class="b_btm_bg b_btm_c">
         <div class="b_btm">
@@ -235,7 +235,7 @@
                 <td><h2>正品保障</h2>正品行货  放心购买</td>
               </tr>
             </table>
-			<table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
+            <table border="0" style="width:210px; height:62px; float:left; margin-left:75px; margin-top:30px;" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="72"><img src="/static/home/images/b2.png" width="62" height="62" /></td>
                 <td><h2>满38包邮</h2>满38包邮 免运费</td>
@@ -256,8 +256,8 @@
         </div>
     </div>
     <div class="b_nav">
-    	<dl>                                                                                            
-        	<dt><a href="#">新手上路</a></dt>
+        <dl>                                                                                            
+            <dt><a href="#">新手上路</a></dt>
             <dd><a href="#">售后流程</a></dd>
             <dd><a href="#">购物流程</a></dd>
             <dd><a href="#">订购方式</a></dd>
@@ -265,32 +265,32 @@
             <dd><a href="#">推荐分享说明</a></dd>
         </dl>
         <dl>
-        	<dt><a href="#">配送与支付</a></dt>
+            <dt><a href="#">配送与支付</a></dt>
             <dd><a href="#">货到付款区域</a></dd>
             <dd><a href="#">配送支付查询</a></dd>
             <dd><a href="#">支付方式说明</a></dd>
         </dl>
         <dl>
-        	<dt><a href="#">会员中心</a></dt>
+            <dt><a href="#">会员中心</a></dt>
             <dd><a href="#">资金管理</a></dd>
             <dd><a href="#">我的收藏</a></dd>
             <dd><a href="#">我的订单</a></dd>
         </dl>
         <dl>
-        	<dt><a href="#">服务保证</a></dt>
+            <dt><a href="#">服务保证</a></dt>
             <dd><a href="#">退换货原则</a></dd>
             <dd><a href="#">售后服务保证</a></dd>
             <dd><a href="#">产品质量保证</a></dd>
         </dl>
         <dl>
-        	<dt><a href="#">联系我们</a></dt>
+            <dt><a href="#">联系我们</a></dt>
             <dd><a href="#">网站故障报告</a></dd>
             <dd><a href="#">购物咨询</a></dd>
             <dd><a href="#">投诉与建议</a></dd>
         </dl>
         <div class="b_tel_bg">
-        	<a href="#" class="b_sh1">新浪微博</a>            
-        	<a href="#" class="b_sh2">腾讯微博</a>
+            <a href="#" class="b_sh1">新浪微博</a>            
+            <a href="#" class="b_sh2">腾讯微博</a>
             <p>
             服务热线：<br />
             <span>400-123-4567</span>
@@ -302,10 +302,10 @@
         </div>
     </div>    
     <div class="btmbg">
-		<div class="btm">
-        	备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
+        <div class="btm">
+            备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />
             <img src="/static/home/images/b_1.gif" width="98" height="33" /><img src="/static/home/images/b_2.gif" width="98" height="33" /><img src="/static/home/images/b_3.gif" width="98" height="33" /><img src="/static/home/images/b_4.gif" width="98" height="33" /><img src="/static/home/images/b_5.gif" width="98" height="33" /><img src="/static/home/images/b_6.gif" width="98" height="33" />
-        </div>    	
+        </div>      
     </div>
     <!--End Footer End -->    
 </div>
@@ -326,8 +326,8 @@
     $('form').submit(function(){
         var a = $('#add').val();
         var b = $('#readd').val();
-
-        // console.log(a);
+        /*console.log(a);
+        console.log(b);*/
         
          var password = /^(\w){6,20}$/;
           if(!password.test($('#add').val())){
@@ -343,23 +343,16 @@
         }else {
             $('.repassword').text('*');
             $('#readd').css('border-color','');
-             $.ajax({
-                            async : false,
-                            type: "post",
-                            url: "{{url('newpassword')}}", //
-                            data: {
-                                "new": a,
-                                
-                                '_token':'{{csrf_token()}}'
-                            },
-                            dataType: "json",
-                            success: function (data) {
-                                // console.log(data);
-                                if(data == 1){
-                                    window.location.href = "http://lamp214.net/login";
-                                }
-                            }
-            });
+            
+            $.post('/newpassword',{"new":a, "_token":"{{csrf_token()}}"},function(data){
+                 if(data == 1){
+                    alert("修改成功,请牢记您的密码");
+                    location.href="/login";
+                 }else{
+                    alert('修改失败');
+                    location.href="/resetpassword";
+                 }
+            })
 
         }
 

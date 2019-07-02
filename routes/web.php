@@ -15,13 +15,28 @@
     return view('welcome');
 });*/
 
-//后台路由组，以后添加中间件
-Route::group([],function(){
+//登录控制器
+Route::resource('/admin/login','Admin\login\LoginController');
 
-//后台登录路由
-Route::get('/login','Home\LoginController@index');
-Route::post('admin/dologin','Admin\LoginController@dologin');
-Route::get('admin/captcha','Admin\LoginController@captcha');
+//验证码控制器
+Route::get('admin/captcha','Admin\login\LoginController@captcha');
+//如果没有权限跳转页面
+Route::get('admin/noper','Admin\login\LoginController@noper');
+
+
+//退出登录
+Route::get('/admin/out','Admin\login\LoginController@outlogin');
+
+//后台路由组，以后添加中间件
+Route::group(['middleware'=>['adminlogin']],function(){
+
+//角色管理路由
+Route::resource('/admin/role','Admin\rbac\RoleController');
+//权限管理路由
+Route::resource('/admin/permission','Admin\rbac\PermissionController');
+//管理员列表角色跳转路由
+Route::get('/admin/user/role/{id}','Admin\AdminController@userrole');
+Route::post('/admin/user/uprole/{id}','Admin\AdminController@uprole');
 
 
 //后台用户管理路由
@@ -58,18 +73,15 @@ Route::resource('/admin/lunbo','Admin\Lunbo\LunboController');
 
 //后台商品添加路由
 Route::resource('/ginsert','Admin\goods_insert\Goods_insertController');
+
+//后台商品的详情图片添加
+Route::get('/goodsimg/{id}','Admin\goods_insert\GoodsimgController@adds');
+Route::any('/goodsimg/tian/','Admin\goods_insert\GoodsimgController@tian');
+
 //后台商品类型添加路由
 Route::resource('/goods_type','Admin\goods_type\Goods_typeController');
-
-
-
-/**
-	 * 后台商品添加路由规则
-	 */
-//后台商品添加路由
-Route::any('/goods/create','Admin\Goods_brandController@create');
-//后台商品列表页面路由
-Route::any('/admin/list','Admin\Goods_brandController@list');
+//后台商品属性路由
+Route::resource('/goods_attr','Admin\goods_attr\Goods_attrController');
 
 	/**
 	 * 后台商品品牌模块路由规则
@@ -91,55 +103,19 @@ Route::any('/admin/delete/{id}','Admin\BrandController@delete');
 	 * 后台广告路由规则
 	 */
 //后台广告添加页面
-Route::any('/admin/create','Admin\AdvertController@create');
+Route::resource('/advert','Admin\AdvertController');
+//友情链接路由
+Route::resource('/links','Admin\links\GoodslinksController');
 
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //前台首页路由
 Route::any('/','Home\IndexController@index');
-//登录路由
-Route::get('/login','Home\LoginController@index');
-//用户登出
-Route::get('/loginout','Home\LoginController@loginout');
-//用户登录验证
-Route::post('/login','Home\LoginController@login');
-
-//忘记密码
-Route::any('/slip','Home\LoginController@slip');
-//第三方发送短信路由
-Route::any('/smsyzm','Home\LoginController@smsyzm');
-//验证是否是注册的手机号
-Route::any('/verify','Home\LoginController@verify');
-//生成手机验证码并加盐
-Route::any('/code','Home\LoginController@code');
-//向用户发送验证码
-Route::any('/smsyzm','Home\LoginController@smsyzm');
-//对比验证码
-Route::any('/reset','Home\LoginController@reset');
-//重置密码
-Route::any('/resetpassword','Home\LoginController@resetpassword');
-//短信验证修改密码
-Route::post('/newpassword','Home\LoginController@newpassword');
-
 //注册用户路由
 Route::any('/add','Home\LoginController@add');
 //注册信息存储
-Route::post('/add','Home\LoginController@create');
+Route::post('/doadd','Home\LoginController@doadd');
 //注册时验证用户名是否存在
 Route::get('/readd','Home\LoginController@readd');
 //手机号是否重复
@@ -150,10 +126,47 @@ Route::any('/yan','Home\LoginController@yanzheng');
 Route::get('/fan','Home\LoginController@fan');
 
 
+//登录路由
+Route::get('/login','Home\LoginController@index');
+//用户退出
+Route::get('/loginout','Home\LoginController@loginout');
+//用户登录验证
+Route::post('/dologin','Home\LoginController@login');
 
+
+//找回密码路由
+Route::get('/findpwd','Home\login\LoginController@findpwd');
+//发送验证码路由
+Route::get('/dopwd','Home\login\LoginController@sms');
+//对比验证码
+Route::post('/reset','Home\login\LoginController@reset');
+
+
+//重置密码
+Route::any('/resetpassword','Home\LoginController@resetpassword');
+//短信验证修改密码
+Route::post('/newpassword','Home\LoginController@newpassword');
+
+
+//前台广告显示页面路由
+Route::any('/guanggao/{id}','Home\IndexController@list');
+
+
+//前台中间件
+Route::group(['middleware'=>'homelogin'],function(){
+//购物车路由 
+Route::post('/goodscar','Home\goodscar\GoodcarController@gocar');
+Route::get('/deletecar','Home\goodscar\GoodcarController@delete');
+Route::get('/jiesuan','Home\goodscar\GoodcarController@jiesuan');
+Route::post('/queren','Home\QuerenController@list');     
+Route::post('/ding','Home\QuerenController@ding');
+});
 
 //商品列表
-Route::any('/home/list','Home\ListController@index');
+Route::any('/list/{id}','Home\ListController@index');
+//商品详情
+Route::resource('/detail','Home\DetailController');
+
 
 
 

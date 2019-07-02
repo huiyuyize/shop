@@ -15,7 +15,7 @@
         </span>
     </div>
     <div class="mws-panel-body no-padding">
-        <form class="mws-form" action="/admin/index" method="post" enctype="multipart/form-data">
+        <form class="mws-form" action="/advert" method="post" enctype="multipart/form-data">
             <div class="mws-form-inline">
            
                 <div class="mws-form-row">

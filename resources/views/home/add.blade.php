@@ -59,7 +59,7 @@
 		<div class="reg_c">
      
     @section('form')
-        	<form action="/add" method="post">
+        	<form action="/doadd" method="post">
             <table border="0" style="width:420px; font-size:14px; margin-top:20px;" cellspacing="0" cellpadding="0">
               <tr height="30" valign="top">
               	<td width="95">&nbsp;</td>
